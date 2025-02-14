@@ -2,19 +2,21 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
+import { useNavigate } from "react-router-dom";
 
 const navItems = [
-  { label: "Rooms", href: "#rooms" },
-  { label: "Dining", href: "#dining" },
-  { label: "Experiences", href: "#experiences" },
-  { label: "Offers", href: "#offers" },
-  { label: "Book Now", href: "#booking" },
+  { label: "Rooms", href: "/rooms" },
+  { label: "Dining", href: "/dining" },
+  { label: "Experiences", href: "/experiences" },
+  { label: "Offers", href: "/offers" },
+  { label: "Book Now", href: "/booking" },
   { label: "Contact", href: "#contact" }
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,9 +31,13 @@ const Navbar = () => {
 
   const handleNavClick = (href: string) => {
     setIsOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (href.startsWith('#')) {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate(href);
     }
   };
 
@@ -40,7 +46,14 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0">
-            <a href="/" className="font-serif text-2xl font-bold text-gray-900">
+            <a 
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('/');
+              }} 
+              href="/" 
+              className="font-serif text-2xl font-bold text-gray-900 cursor-pointer"
+            >
               TRIDENT
             </a>
           </div>
@@ -61,7 +74,11 @@ const Navbar = () => {
                   {item.label}
                 </a>
               ))}
-              <Button variant="outline" className="border-gold text-gold hover:bg-gold hover:text-white transition-all duration-200">
+              <Button 
+                variant="outline" 
+                className="border-gold text-gold hover:bg-gold hover:text-white transition-all duration-200"
+                onClick={() => handleNavClick('/booking')}
+              >
                 BOOK NOW
               </Button>
             </div>
