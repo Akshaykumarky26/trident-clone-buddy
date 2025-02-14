@@ -2,7 +2,10 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import OffersSection from "@/components/OffersSection";
-import BookingForm from "@/components/BookingForm";
+import RoomsSection from "@/components/RoomsSection";
+import DiningSection from "@/components/DiningSection";
+import ExperiencesSection from "@/components/ExperiencesSection";
+import BookingSection from "@/components/BookingSection";
 
 const Index = () => {
   return (
@@ -10,7 +13,10 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <OffersSection />
-      <BookingForm />
+      <RoomsSection />
+      <DiningSection />
+      <ExperiencesSection />
+      <BookingSection />
     </div>
   );
 };
