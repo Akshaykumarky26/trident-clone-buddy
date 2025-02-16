@@ -6,6 +6,7 @@ import RoomsSection from "@/components/RoomsSection";
 import DiningSection from "@/components/DiningSection";
 import ExperiencesSection from "@/components/ExperiencesSection";
 import BookingSection from "@/components/BookingSection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -17,6 +18,7 @@ const Index = () => {
       <DiningSection />
       <ExperiencesSection />
       <BookingSection />
+      <Footer />
     </div>
   );
 };
