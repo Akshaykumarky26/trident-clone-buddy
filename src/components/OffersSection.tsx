@@ -1,24 +1,37 @@
 
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
+import { ImageSlideshow } from "./ui/image-slideshow";
 
 const offers = [
   {
     title: "Members Special Rate",
     description: "Exclusive 10% off on your stay as a Trident Privilege member",
-    image: "/placeholder.svg",
+    images: [
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+    ],
     price: "Starting from ₹8,500*",
   },
   {
     title: "Weekend Getaway",
     description: "Special weekend rates including breakfast and dinner",
-    image: "/placeholder.svg",
+    images: [
+      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+      "https://images.unsplash.com/photo-1721322800607-8c38375eef04",
+    ],
     price: "Starting from ₹10,500*",
   },
   {
     title: "Advance Purchase",
     description: "Save up to 15% when you book 14 days in advance",
-    image: "/placeholder.svg",
+    images: [
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+      "https://images.unsplash.com/photo-1721322800607-8c38375eef04",
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+    ],
     price: "Starting from ₹7,500*",
   },
 ];
@@ -38,10 +51,10 @@ const OffersSection = () => {
           {offers.map((offer, index) => (
             <Card key={index} className="overflow-hidden group hover:shadow-lg transition-shadow duration-300">
               <div className="relative h-48 overflow-hidden">
-                <img
-                  src={offer.image}
-                  alt={offer.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                <ImageSlideshow
+                  images={offer.images}
+                  title={offer.title}
+                  className="w-full h-full"
                 />
               </div>
               <div className="p-6">
