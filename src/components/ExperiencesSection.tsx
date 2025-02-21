@@ -1,11 +1,4 @@
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { Card } from "./ui/card";
 
 const experiences = [
@@ -46,40 +39,28 @@ const ExperiencesSection = () => {
           </p>
         </div>
 
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full"
-        >
-          <CarouselContent className="-ml-1">
-            {experiences.map((experience, index) => (
-              <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
-                <Card className="overflow-hidden group hover:shadow-lg transition-shadow duration-300">
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={experience.image}
-                      alt={experience.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="font-serif text-xl mb-2">{experience.title}</h3>
-                    <p className="text-muted-foreground text-sm mb-2">
-                      {experience.description}
-                    </p>
-                    <p className="text-sm text-gray-600">
-                      {experience.details}
-                    </p>
-                  </div>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {experiences.map((experience, index) => (
+            <Card key={index} className="overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={experience.image}
+                  alt={experience.title}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="font-serif text-xl mb-2">{experience.title}</h3>
+                <p className="text-muted-foreground text-sm mb-2">
+                  {experience.description}
+                </p>
+                <p className="text-sm text-gray-600">
+                  {experience.details}
+                </p>
+              </div>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   );

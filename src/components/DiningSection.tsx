@@ -1,11 +1,4 @@
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { Card } from "./ui/card";
 
 const restaurants = [
@@ -46,42 +39,30 @@ const DiningSection = () => {
           </p>
         </div>
 
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full"
-        >
-          <CarouselContent className="-ml-1">
-            {restaurants.map((restaurant, index) => (
-              <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
-                <Card className="overflow-hidden group hover:shadow-lg transition-shadow duration-300">
-                  <div className="relative h-64 overflow-hidden">
-                    <img
-                      src={restaurant.image}
-                      alt={restaurant.name}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="font-serif text-2xl mb-2">{restaurant.name}</h3>
-                    <p className="text-gold font-sans text-sm mb-2">{restaurant.cuisine}</p>
-                    <p className="text-muted-foreground text-sm mb-4">
-                      {restaurant.description}
-                    </p>
-                    <div className="space-y-2 text-sm">
-                      <p><span className="font-semibold">Hours:</span> {restaurant.timing}</p>
-                      <p><span className="font-semibold">Specialty:</span> {restaurant.specialty}</p>
-                    </div>
-                  </div>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {restaurants.map((restaurant, index) => (
+            <Card key={index} className="overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+              <div className="relative h-64 overflow-hidden">
+                <img
+                  src={restaurant.image}
+                  alt={restaurant.name}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="font-serif text-2xl mb-2">{restaurant.name}</h3>
+                <p className="text-gold font-sans text-sm mb-2">{restaurant.cuisine}</p>
+                <p className="text-muted-foreground text-sm mb-4">
+                  {restaurant.description}
+                </p>
+                <div className="space-y-2 text-sm">
+                  <p><span className="font-semibold">Hours:</span> {restaurant.timing}</p>
+                  <p><span className="font-semibold">Specialty:</span> {restaurant.specialty}</p>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   );
