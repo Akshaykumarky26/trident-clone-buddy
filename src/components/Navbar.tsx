@@ -34,17 +34,20 @@ const Navbar = () => {
     // If we're not on the home page, navigate there first
     if (location.pathname !== "/") {
       await navigate("/");
-    }
-    
-    // Wait a bit longer for the DOM to be ready
-    setTimeout(() => {
+      // Wait for navigation to complete
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      // If we're already on the home page, just scroll
       const element = document.querySelector(href);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
-      } else {
-        console.log(`Element not found: ${href}`);
       }
-    }, 300); // Increased timeout to ensure DOM is ready
+    }
   };
 
   return (
@@ -52,14 +55,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0">
-            <a 
-              href="/" 
-              onClick={(e) => {
-                e.preventDefault();
-                navigate("/");
-              }} 
-              className="font-serif text-2xl font-bold text-gray-900"
-            >
+            <a href="/" className="font-serif text-2xl font-bold text-gray-900">
               TRIDENT
             </a>
           </div>
@@ -68,19 +64,19 @@ const Navbar = () => {
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-8">
               {navItems.slice(0, -1).map((item) => (
-                <button
+                <a
                   key={item.label}
-                  onClick={() => handleNavClick(item.href)}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item.href);
+                  }}
                   className="font-sans text-sm text-gray-700 hover:text-gold transition-colors duration-200"
                 >
                   {item.label}
-                </button>
+                </a>
               ))}
-              <Button 
-                variant="outline" 
-                className="border-gold text-gold hover:bg-gold hover:text-white transition-all duration-200"
-                onClick={() => handleNavClick("#booking")}
-              >
+              <Button variant="outline" className="border-gold text-gold hover:bg-gold hover:text-white transition-all duration-200">
                 BOOK NOW
               </Button>
             </div>
@@ -105,13 +101,17 @@ const Navbar = () => {
         <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navItems.map((item) => (
-              <button
+              <a
                 key={item.label}
-                onClick={() => handleNavClick(item.href)}
-                className="block w-full text-left px-3 py-2 text-base font-sans text-gray-700 hover:text-gold hover:bg-gray-50 rounded-md transition-colors duration-200"
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item.href);
+                }}
+                className="block px-3 py-2 text-base font-sans text-gray-700 hover:text-gold hover:bg-gray-50 rounded-md transition-colors duration-200"
               >
                 {item.label}
-              </button>
+              </a>
             ))}
           </div>
         </div>
