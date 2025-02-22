@@ -1,3 +1,4 @@
+
 import { Card } from "./ui/card";
 
 const experiences = [
@@ -29,7 +30,7 @@ const experiences = [
 
 const ExperiencesSection = () => {
   return (
-    <section id="experiences" className="py-20 px-4">
+    <section className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-serif mb-4">Hotel Experiences</h2>

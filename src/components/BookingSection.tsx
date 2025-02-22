@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Calendar } from "./ui/calendar";
 import { Button } from "./ui/button";
@@ -21,7 +22,7 @@ const BookingSection = () => {
   const [checkOut, setCheckOut] = useState<Date>();
 
   return (
-    <section id="booking" className="py-20 px-4 bg-secondary">
+    <section className="py-20 px-4 bg-secondary">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-serif mb-4">Book Your Stay</h2>
