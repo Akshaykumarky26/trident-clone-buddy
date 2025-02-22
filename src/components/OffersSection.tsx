@@ -1,4 +1,3 @@
-
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
 import { ImageSlideshow } from "./ui/image-slideshow";
@@ -38,7 +37,7 @@ const offers = [
 
 const OffersSection = () => {
   return (
-    <section className="py-20 px-4 bg-secondary">
+    <section id="offers" className="py-20 px-4 bg-secondary">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-serif mb-4">Special Offers</h2>
