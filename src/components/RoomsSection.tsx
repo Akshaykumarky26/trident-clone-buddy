@@ -1,4 +1,7 @@
+
 import { Card } from "./ui/card";
+import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 
 const rooms = [
   {
@@ -50,9 +53,15 @@ const RoomsSection = () => {
                 <p className="text-muted-foreground text-sm mb-2">
                   {room.description}
                 </p>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 mb-4">
                   {room.details}
                 </p>
+                <div className="flex justify-between items-center">
+                  <span className="text-lg font-semibold">{room.price}/night</span>
+                  <Link to={`/rooms/${room.name.toLowerCase().replace(' ', '-')}`}>
+                    <Button variant="default">View Details</Button>
+                  </Link>
+                </div>
               </div>
             </Card>
           ))}
