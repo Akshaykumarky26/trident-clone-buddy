@@ -2,6 +2,8 @@
 import { useParams } from "react-router-dom";
 import { ImageSlideshow } from "@/components/ui/image-slideshow";
 import { Button } from "@/components/ui/button";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const rooms = {
   "deluxe-room": {
@@ -111,58 +113,70 @@ const RoomDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <h1 className="text-4xl font-serif mb-8">{room.title}</h1>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Left side - Details */}
-          <div className="space-y-6">
-            <p className="text-lg text-muted-foreground">{room.longDescription}</p>
-            
-            <div>
-              <h2 className="text-2xl font-serif mb-4">Room Specifications</h2>
-              <dl className="grid grid-cols-2 gap-4">
-                {Object.entries(room.specifications).map(([key, value]) => (
-                  <div key={key}>
-                    <dt className="font-medium capitalize">{key}</dt>
-                    <dd className="text-muted-foreground">{value}</dd>
-                  </div>
-                ))}
-              </dl>
+    <div className="min-h-screen bg-background flex flex-col">
+      {/* Navbar with black text */}
+      <div className="text-black">
+        <Navbar />
+      </div>
+
+      {/* Main Content */}
+      <main className="flex-grow">
+        <div className="max-w-7xl mx-auto px-4 py-12">
+          <h1 className="text-4xl font-serif mb-8">{room.title}</h1>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Left side - Details */}
+            <div className="space-y-6">
+              <p className="text-lg text-muted-foreground">{room.longDescription}</p>
+              
+              <div>
+                <h2 className="text-2xl font-serif mb-4">Room Specifications</h2>
+                <dl className="grid grid-cols-2 gap-4">
+                  {Object.entries(room.specifications).map(([key, value]) => (
+                    <div key={key}>
+                      <dt className="font-medium capitalize">{key}</dt>
+                      <dd className="text-muted-foreground">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-serif mb-4">Amenities</h2>
+                <ul className="grid grid-cols-2 gap-2">
+                  {room.amenities.map((amenity) => (
+                    <li key={amenity} className="flex items-center gap-2">
+                      <span className="text-muted-foreground">• {amenity}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="pt-4">
+                <p className="text-2xl font-serif mb-4">{room.price}</p>
+                <Button size="lg" className="w-full bg-gold hover:bg-gold-dark">
+                  Book Now
+                </Button>
+              </div>
             </div>
 
-            <div>
-              <h2 className="text-2xl font-serif mb-4">Amenities</h2>
-              <ul className="grid grid-cols-2 gap-2">
-                {room.amenities.map((amenity) => (
-                  <li key={amenity} className="flex items-center gap-2">
-                    <span className="text-muted-foreground">• {amenity}</span>
-                  </li>
-                ))}
-              </ul>
+            {/* Right side - Image Slideshow */}
+            <div className="h-[600px]">
+              <ImageSlideshow 
+                images={room.images} 
+                title={room.title}
+                className="w-full h-full"
+              />
             </div>
-
-            <div className="pt-4">
-              <p className="text-2xl font-serif mb-4">{room.price}</p>
-              <Button size="lg" className="w-full bg-gold hover:bg-gold-dark">
-                Book Now
-              </Button>
-            </div>
-          </div>
-
-          {/* Right side - Image Slideshow */}
-          <div className="h-[600px]">
-            <ImageSlideshow 
-              images={room.images} 
-              title={room.title}
-              className="w-full h-full"
-            />
           </div>
         </div>
-      </div>
+      </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
 
 export default RoomDetail;
+
