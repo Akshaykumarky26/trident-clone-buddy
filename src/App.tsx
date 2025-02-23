@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from 'react';
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import RoomDetail from "./pages/RoomDetail";
 
 // Move queryClient initialization outside the component
 const queryClient = new QueryClient({
@@ -28,7 +29,7 @@ const App = () => {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="/rooms/:roomId" element={<RoomDetail />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

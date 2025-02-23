@@ -1,6 +1,7 @@
 
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 
 const rooms = [
   {
@@ -9,6 +10,7 @@ const rooms = [
     image: "/placeholder.svg",
     amenities: ["King Bed", "City View", "Free WiFi", "Mini Bar"],
     price: "₹8,500* per night",
+    slug: "deluxe-room"
   },
   {
     title: "Premier Room",
@@ -16,6 +18,7 @@ const rooms = [
     image: "/placeholder.svg",
     amenities: ["King/Twin Beds", "Pool View", "Club Access", "Butler Service"],
     price: "₹12,500* per night",
+    slug: "premier-room"
   },
   {
     title: "Trident Suite",
@@ -23,12 +26,13 @@ const rooms = [
     image: "/placeholder.svg",
     amenities: ["Separate Living Room", "Panoramic View", "24/7 Butler", "Lounge Access"],
     price: "₹25,000* per night",
+    slug: "trident-suite"
   },
 ];
 
 const RoomsSection = () => {
   return (
-    <section className="py-20 px-4">
+    <section className="py-20 px-4" id="rooms">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-serif mb-4">Luxury Accommodations</h2>
@@ -40,30 +44,32 @@ const RoomsSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {rooms.map((room, index) => (
             <Card key={index} className="overflow-hidden group hover:shadow-lg transition-shadow duration-300">
-              <div className="relative h-64 overflow-hidden">
-                <img
-                  src={room.image}
-                  alt={room.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="font-serif text-2xl mb-2">{room.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {room.description}
-                </p>
-                <ul className="mb-4 space-y-2">
-                  {room.amenities.map((amenity, i) => (
-                    <li key={i} className="text-sm text-muted-foreground">
-                      • {amenity}
-                    </li>
-                  ))}
-                </ul>
-                <p className="font-serif text-lg mb-4">{room.price}</p>
-                <Button className="w-full bg-gold hover:bg-gold-dark text-white">
-                  Book Now
-                </Button>
-              </div>
+              <Link to={`/rooms/${room.slug}`}>
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={room.image}
+                    alt={room.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-serif text-2xl mb-2">{room.title}</h3>
+                  <p className="text-muted-foreground text-sm mb-4">
+                    {room.description}
+                  </p>
+                  <ul className="mb-4 space-y-2">
+                    {room.amenities.map((amenity, i) => (
+                      <li key={i} className="text-sm text-muted-foreground">
+                        • {amenity}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="font-serif text-lg mb-4">{room.price}</p>
+                  <Button className="w-full bg-gold hover:bg-gold-dark text-white">
+                    View Details
+                  </Button>
+                </div>
+              </Link>
             </Card>
           ))}
         </div>
